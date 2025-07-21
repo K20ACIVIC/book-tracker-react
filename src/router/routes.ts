@@ -2,10 +2,10 @@
 import { RouteObject } from 'react-router-dom';
 import BookList from '../features/books/BookList';
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
-    path: '/',
-    element: BookList as unknown as React.ReactNode,
+    path: '/books',
+    Component: BookList,
   },
 ];
 

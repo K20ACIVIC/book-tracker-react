@@ -1,9 +1,9 @@
+import axios, { AxiosResponse } from 'axios';
 import { Book } from '../features/books/BookItem';
 
-export async function fetchBooks(query: string): Promise<Book[]> {
-  // Replace with real API call
-  return [
-    { id: '1', title: 'Harry Potter and the Sorcerer\'s Stone', author: 'J.K. Rowling', year: 1997 },
-    { id: '2', title: 'Harry Potter and the Chamber of Secrets', author: 'J.K. Rowling', year: 1998 },
-  ];
+export async function fetchBooks(): Promise<AxiosResponse<Book[], any>> {
+  
+  const apiRoute = import.meta.env.VITE_API_ROUTE || 'http://localhost:3000/api';
+  
+  return axios.get<Book[]>(`${apiRoute}/books`, {});
 }

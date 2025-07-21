@@ -8,16 +8,18 @@ interface UseBooksResult {
   loading: boolean;
 }
 
-export function useBooks(query: string): UseBooksResult {
+export function useBooks(): UseBooksResult {
   const [books, setBooks] = useState<Book[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
-    fetchBooks(query)
+    fetchBooks()
       .then((data) => {
-        setBooks(data);
+        
+        const books = data.data || [];
+        setBooks(books);
         setError(null);
       })
       .catch((err) => {
@@ -25,7 +27,7 @@ export function useBooks(query: string): UseBooksResult {
         setBooks([]);
       })
       .finally(() => setLoading(false));
-  }, [query]);
+  }, []);
 
   return { books, error, loading };
 }

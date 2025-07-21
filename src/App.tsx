@@ -1,10 +1,13 @@
+import { useRoutes } from 'react-router-dom';
 import './App.css';
-import BookList from './features/books/BookList';
+import routes from './router/routes';
 
 function App() {
+  const routing = useRoutes(routes);
+
   return (
     <div className="App">
-      <BookList />
+      {routing}
     </div>
   );
 }
